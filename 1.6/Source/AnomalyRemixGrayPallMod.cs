@@ -6,7 +6,7 @@ namespace AnomalyRemixGrayPall
     public class AnomalyRemixGrayPallMod : Mod
     {
         public const string PACKAGE_ID = "anomalyremixgraypall.1trickPwnyta";
-        public const string PACKAGE_NAME = "Anomaly Remix Gray Pall";
+        public const string PACKAGE_NAME = "Anomaly Remix: Gray Pall";
 
         public AnomalyRemixGrayPallMod(ModContentPack content) : base(content)
         {

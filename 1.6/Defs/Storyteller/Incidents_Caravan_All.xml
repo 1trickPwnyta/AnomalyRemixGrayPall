@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <IncidentDef>
+    <defName>AnomalyAmbush</defName>
+    <label>anomaly ambush</label>
+    <category>ThreatBig</category>
+    <targetTags>
+      <li>Caravan</li>
+      <li>Map_TempIncident</li>
+    </targetTags>
+    <workerClass>AnomalyRemixGrayPall.IncidentWorker_Ambush_Anomaly</workerClass>
+    <pointsScaleable>true</pointsScaleable>
+    <minRefireDays>0.17</minRefireDays>
+    <letterText>{0} has been ambushed by dark entities!</letterText>
+    <letterLabel>Caravan ambushed (entities)</letterLabel>
+    <letterDef>ThreatBig</letterDef>
+    <tale>CaravanAmbushedByAnomaly</tale>
+	<minAnomalyThreatLevel>1</minAnomalyThreatLevel>
+	<baseChance>1</baseChance>
+  </IncidentDef>
+
+</Defs>

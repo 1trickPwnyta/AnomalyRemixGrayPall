@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<AnomalyRemixGrayPall_AnomalyThreatsInactive_Label>Anomaly threats (no gray pall)</AnomalyRemixGrayPall_AnomalyThreatsInactive_Label>
+	<AnomalyRemixGrayPall_AnomalyThreatsInactive_Info>Adjust the percentage of major threats that will be Anomaly-related when there is no gray pall active. Only certain minor Anomaly incidents can occur when no gray pall is active.</AnomalyRemixGrayPall_AnomalyThreatsInactive_Info>
+	<AnomalyRemixGrayPall_AnomalyThreatsActive_Label>Anomaly threats (gray pall)</AnomalyRemixGrayPall_AnomalyThreatsActive_Label>
+	<AnomalyRemixGrayPall_AnomalyThreatsActive_Info>Adjust the percentage of major threats that will be Anomaly-related when a gray pall is active.</AnomalyRemixGrayPall_AnomalyThreatsActive_Info>
+	<AnomalyRemixGrayPall_GrayPallMtbDays_Label>Gray pall MTB days</AnomalyRemixGrayPall_GrayPallMtbDays_Label>
+	<AnomalyRemixGrayPall_GrayPallMtbDays_Info>Adjust the average number of days between gray pall events.</AnomalyRemixGrayPall_GrayPallMtbDays_Info>
+	<AnomalyRemixGrayPall_MtbRare>Rare</AnomalyRemixGrayPall_MtbRare>
+	<AnomalyRemixGrayPall_MtbUncommon>Uncommon</AnomalyRemixGrayPall_MtbUncommon>
+	<AnomalyRemixGrayPall_MtbCommon>Somewhat common</AnomalyRemixGrayPall_MtbCommon>
+	<AnomalyRemixGrayPall_MtbVeryCommon>Frequent</AnomalyRemixGrayPall_MtbVeryCommon>
+	<AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Label>Extra threat MTB hours</AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Label>
+	<AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Info>Adjust the average number of hours between extra Anomaly threats during gray pall events.</AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Info>
+</LanguageData>

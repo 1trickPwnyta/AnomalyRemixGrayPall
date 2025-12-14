@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <AnomalyPlaystyleDef>
+    <defName>GrayPall</defName>
+    <label>gray pall</label>
+    <description>The monolith does not appear. Any Anomaly threat can occur, but only during a gray pall, by default. Note: The monolith endgame cannot occur in this mode.</description>
+    <displayThreatFractionSliders>false</displayThreatFractionSliders>
+    <displayStudyFactorSlider>false</displayStudyFactorSlider>
+    <generateMonolith>false</generateMonolith>
+    <alwaysShowCodex>true</alwaysShowCodex>
+  </AnomalyPlaystyleDef>
+
+</Defs>
