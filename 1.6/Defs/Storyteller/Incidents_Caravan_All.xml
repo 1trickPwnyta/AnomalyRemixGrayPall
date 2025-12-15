@@ -3,7 +3,7 @@
 <Defs>
 
   <IncidentDef>
-    <defName>AnomalyAmbush</defName>
+    <defName>AnomalyRemixGrayPall_AnomalyAmbush</defName>
     <label>anomaly ambush</label>
     <category>ThreatBig</category>
     <targetTags>
