@@ -23,26 +23,29 @@ namespace AnomalyRemixGrayPall
         {
             if (Utility.PlaystyleActive)
             {
-                if (!Utility.GrayPallActive && Rand.MTBEventOccurs(grayPallMtbDays, 60000f, 1f))
+                if (Find.TickManager.TicksGame > 900000 && !Utility.GrayPallActive && Rand.MTBEventOccurs(grayPallMtbDays, 60000f, 1f))
                 {
                     StartGrayPall();
                 }
-                foreach (IIncidentTarget target in Find.Storyteller.AllIncidentTargets)
+                if (Utility.GrayPallActive)
                 {
-                    if (Utility.GrayPallActive && Rand.MTBEventOccurs(grayPallExtraThreatMtbHours, 2500f, 1f))
+                    foreach (IIncidentTarget target in Find.Storyteller.AllIncidentTargets)
                     {
-                        IncidentCategoryDef category = Rand.Bool ? IncidentCategoryDefOf.ThreatBig : IncidentCategoryDefOf.ThreatSmall;
-                        IncidentParms parms = StorytellerUtility.DefaultParmsNow(category, target);
-                        Storyteller.AnomalyIncidents.Where(i => i.Worker.CanFireNow(parms)).TryRandomElementByWeight(i => i.baseChance, out IncidentDef incident);
-                        if (incident == null)
+                        if (Rand.MTBEventOccurs(grayPallExtraThreatMtbHours, 2500f, 1f))
                         {
-                            category = category == IncidentCategoryDefOf.ThreatBig ? IncidentCategoryDefOf.ThreatSmall : IncidentCategoryDefOf.ThreatBig;
-                            parms = StorytellerUtility.DefaultParmsNow(category, target);
-                            Storyteller.AnomalyIncidents.Where(i => i.Worker.CanFireNow(parms)).TryRandomElementByWeight(i => i.baseChance, out incident);
-                        }
-                        if (incident != null)
-                        {
-                            incident.Worker.TryExecute(parms);
+                            IncidentCategoryDef category = Rand.Bool ? IncidentCategoryDefOf.ThreatBig : IncidentCategoryDefOf.ThreatSmall;
+                            IncidentParms parms = StorytellerUtility.DefaultParmsNow(category, target);
+                            Storyteller.AnomalyIncidents.Where(i => i.Worker.CanFireNow(parms)).TryRandomElementByWeight(i => i.baseChance, out IncidentDef incident);
+                            if (incident == null)
+                            {
+                                category = category == IncidentCategoryDefOf.ThreatBig ? IncidentCategoryDefOf.ThreatSmall : IncidentCategoryDefOf.ThreatBig;
+                                parms = StorytellerUtility.DefaultParmsNow(category, target);
+                                Storyteller.AnomalyIncidents.Where(i => i.Worker.CanFireNow(parms)).TryRandomElementByWeight(i => i.baseChance, out incident);
+                            }
+                            if (incident != null)
+                            {
+                                incident.Worker.TryExecute(parms);
+                            }
                         }
                     }
                 }
