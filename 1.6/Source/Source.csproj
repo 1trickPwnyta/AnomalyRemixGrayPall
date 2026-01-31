@@ -54,13 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnomalyPlaystyleDefOf.cs" />
+    <Compile Include="AnomalyRemixGrayPallSettings.cs" />
     <Compile Include="DevTools.cs" />
     <Compile Include="GameComponent_AnomalyRemixGrayPall.cs" />
     <Compile Include="IncidentWorker_Ambush_Anomaly.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Patch_CaravansBattlefield.cs" />
     <Compile Include="Patch_Dialog_AnomalySettings.cs" />
+    <Compile Include="Patch_FormCaravanComp.cs" />
     <Compile Include="Patch_GameComponent_Anomaly.cs" />
     <Compile Include="Patch_GameCondition_GrayPall.cs" />
+    <Compile Include="Patch_HorrorRelaxTransition.cs" />
     <Compile Include="Patch_StorytellerUI.cs" />
     <Compile Include="Patch_WeatherDecider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

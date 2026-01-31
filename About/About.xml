@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Anomaly Remix: Gray Pall</name>
+	<name>[Alpha] Anomaly Remix: Gray Pall</name>
 	<author>1trickPwnyta</author>
 	<packageId>anomalyremixgraypall.1trickPwnyta</packageId>
-	<modVersion>1.0.0</modVersion>
+	<modVersion>0.0.0</modVersion>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
-	<description><![CDATA[
+	<description><![CDATA[A thick, ominous fog settles across the planet. You and your fellow researchers feel a sense of dread as the wind stills and the smell of rotten flesh enters your nostrils. You were only here to collect rock samples, but your curiosity overtakes you, and you wander off on your own, hoping to find the source of the murky haze.
+	
+Suddenly, a gigantic monolith appears before you. You can feel it speaking into your mind, beckoning you, but you decide to make your way back to the research base so you can show your colleage.
+
+After a short hike back to where you spotted the monolith, the two of you are surrounded by shrieking inhuman creatures that appear out of nowhere. One of them gets a little too close and gouges your left eye out of its socket. Thinking quickly, you light a flare to ward them away for now.
+
+As the researcher you brought along with you tends to your open wound, you peer into the fog, looking for the monolith, but you can't seem to find it anymore. "I swear it was here!" you reassure her. But there's no trace.
+
+Defeated, you return to the base and climb into bed. You'll find it again tomorrow. Somehow you know that if you could study it, you could figure out how to stop the gray pall and the terrifying entities it summons.
+
+<size=18px><color=#5aa9d6>What this does</color></size>
+Anomaly Remix: Gray Pall introduces a new Anomaly playstyle different from Standard or Ambient horror. This new playstyle is called Gray Pall. With the Gray Pall Anomaly playstyle enabled, gray palls control when Anomaly threats occur. By default, Anomaly threats do not occur unless there is a gray pall active, and then Anomaly threats are the only threats that occur.
+
+To play with the Gray Pall playstyle, start a new colony, and on the storyteller selection page, click on Anomaly settings, and then select Gray Pall. You can fiddle with the threat sliders for a custom experience, and if you select a custom game difficulty, there are additional options for Gray Pall mode in the custom difficulty settings.
+
+<size=18px><color=#5aa9d6>Coming soon</color></size>
+A future version of this mod will include a unique starting scenario that utilizes the Gray Pall Anomaly playstyle and includes a new way to win the game.
 
 ________________________________________________
 
@@ -16,6 +32,10 @@ ________________________________________________
 	]]></description>
 	<url>https://github.com/1trickPwnyta/AnomalyRemixGrayPall</url>
 	<modDependencies>
+		<li>
+			<packageId>ludeon.rimworld.anomaly</packageId>
+			<displayName>Anomaly</displayName>
+		</li>
 		<li>
 			<packageId>brrainz.harmony</packageId>
 			<displayName>Harmony</displayName>

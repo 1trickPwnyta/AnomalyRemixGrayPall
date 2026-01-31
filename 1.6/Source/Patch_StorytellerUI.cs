@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using UnityEngine;
 using Verse;
 
 namespace AnomalyRemixGrayPall
@@ -35,6 +36,9 @@ namespace AnomalyRemixGrayPall
                 PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_AnomalyThreatsInactive_Label".Translate(), Dialog_AnomalySettings.GetFrequencyLabel(comp.anomalyThreatsInactiveFraction), "AnomalyRemixGrayPall_AnomalyThreatsInactive_Info".Translate(), ref comp.anomalyThreatsInactiveFraction, ToStringStyle.PercentZero, ToStringNumberSense.Absolute, 0f, 1f);
                 PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_AnomalyThreatsActive_Label".Translate(), Dialog_AnomalySettings.GetFrequencyLabel(comp.anomalyThreatsActiveFraction), "AnomalyRemixGrayPall_AnomalyThreatsActive_Info".Translate(), ref comp.anomalyThreatsActiveFraction, ToStringStyle.PercentZero, ToStringNumberSense.Absolute, 0f, 1f);
                 PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_GrayPallMtbDays_Label".Translate(), comp.grayPallMtbDays.GetGrayPallMtbDaysLabel(), "AnomalyRemixGrayPall_GrayPallMtbDays_Info".Translate(), ref comp.grayPallMtbDays, ToStringStyle.FloatOne, ToStringNumberSense.Absolute, 1f, 60f);
+                PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_GrayPallMinTimeBetween_Label".Translate(), "", "AnomalyRemixGrayPall_GrayPallMtbDays_Info".Translate(), ref comp.grayPallMinTimeBetween, ToStringStyle.FloatOne, ToStringNumberSense.Absolute, 1f, 60f);
+                comp.grayPallMaxTimeBetween = Mathf.Max(comp.grayPallMaxTimeBetween, comp.grayPallMinTimeBetween, comp.grayPallMtbDays * 2f);
+                PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_GrayPallMaxTimeBetween_Label".Translate(), "", "AnomalyRemixGrayPall_GrayPallMtbDays_Info".Translate(), ref comp.grayPallMaxTimeBetween, ToStringStyle.FloatOne, ToStringNumberSense.Absolute, Mathf.Max(comp.grayPallMinTimeBetween, comp.grayPallMtbDays * 2f), 60f);
                 PatchUtility_StorytellerUI.DrawCustomDifficultySlider(listing, "AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Label".Translate(), comp.grayPallExtraThreatMtbHours.GetGrayPallExtraThreatMtbHoursLabel(), "AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Info".Translate(), ref comp.grayPallExtraThreatMtbHours, ToStringStyle.FloatOne, ToStringNumberSense.Absolute, 4f, 72f);
                 return true;
             }

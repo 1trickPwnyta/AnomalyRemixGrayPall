@@ -40,5 +40,7 @@ namespace AnomalyRemixGrayPall
             }
             return "AnomalyRemixGrayPall_MtbVeryCommon".Translate();
         }
+
+        public static bool IsInvisibleCaravanThreat(this Pawn pawn) => pawn.IsPsychologicallyInvisible() && !pawn.Fogged() && pawn.CanReachMapEdge();
     }
 }

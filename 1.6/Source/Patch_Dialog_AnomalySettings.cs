@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace AnomalyRemixGrayPall
@@ -19,6 +20,7 @@ namespace AnomalyRemixGrayPall
                 comp.anomalyThreatsActiveFraction = ___listing.Slider(comp.anomalyThreatsActiveFraction, 0f, 1f);
                 ___listing.Label("AnomalyRemixGrayPall_GrayPallMtbDays_Label".Translate() + ": " + comp.grayPallMtbDays.ToString("F1") + " - " + comp.grayPallMtbDays.GetGrayPallMtbDaysLabel(), tipSignal: "AnomalyRemixGrayPall_GrayPallMtbDays_Info".Translate());
                 comp.grayPallMtbDays = ___listing.Slider(comp.grayPallMtbDays, 1f, 60f);
+                comp.grayPallMaxTimeBetween = Mathf.Max(comp.grayPallMaxTimeBetween, comp.grayPallMtbDays * 2f);
             }
         }
     }

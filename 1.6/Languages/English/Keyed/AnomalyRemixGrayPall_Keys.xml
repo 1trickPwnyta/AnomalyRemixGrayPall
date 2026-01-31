@@ -6,10 +6,17 @@
 	<AnomalyRemixGrayPall_AnomalyThreatsActive_Info>Adjust the percentage of major threats that will be Anomaly-related when a gray pall is active.</AnomalyRemixGrayPall_AnomalyThreatsActive_Info>
 	<AnomalyRemixGrayPall_GrayPallMtbDays_Label>Gray pall MTB days</AnomalyRemixGrayPall_GrayPallMtbDays_Label>
 	<AnomalyRemixGrayPall_GrayPallMtbDays_Info>Adjust the average number of days between gray pall events.</AnomalyRemixGrayPall_GrayPallMtbDays_Info>
+	<AnomalyRemixGrayPall_GrayPallMinTimeBetween_Label>Gray pall min days between</AnomalyRemixGrayPall_GrayPallMinTimeBetween_Label>
+	<AnomalyRemixGrayPall_GrayPallMinTimeBetween_Info>Adjust the minimum number of days between gray pall events.</AnomalyRemixGrayPall_GrayPallMinTimeBetween_Info>
+	<AnomalyRemixGrayPall_GrayPallMaxTimeBetween_Label>Gray pall max days between</AnomalyRemixGrayPall_GrayPallMaxTimeBetween_Label>
+	<AnomalyRemixGrayPall_GrayPallMaxTimeBetween_Info>Adjust the maximum number of days between gray pall events.</AnomalyRemixGrayPall_GrayPallMaxTimeBetween_Info>
 	<AnomalyRemixGrayPall_MtbRare>Rare</AnomalyRemixGrayPall_MtbRare>
 	<AnomalyRemixGrayPall_MtbUncommon>Uncommon</AnomalyRemixGrayPall_MtbUncommon>
 	<AnomalyRemixGrayPall_MtbCommon>Somewhat common</AnomalyRemixGrayPall_MtbCommon>
 	<AnomalyRemixGrayPall_MtbVeryCommon>Frequent</AnomalyRemixGrayPall_MtbVeryCommon>
 	<AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Label>Extra threat MTB hours</AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Label>
 	<AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Info>Adjust the average number of hours between extra Anomaly threats during gray pall events.</AnomalyRemixGrayPall_GrayPallExtraThreatMtbHours_Info>
+	<AnomalyRemixGrayPall_GrayPallMessages>Show a message when gray palls start and end.</AnomalyRemixGrayPall_GrayPallMessages>
+	<AnomalyRemixGrayPall_GrayPallStarted>A gray pall is descending.</AnomalyRemixGrayPall_GrayPallStarted>
+	<AnomalyRemixGrayPall_GrayPallEnded>The gray pall is clearing.</AnomalyRemixGrayPall_GrayPallEnded>
 </LanguageData>
