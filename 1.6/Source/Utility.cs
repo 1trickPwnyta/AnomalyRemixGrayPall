@@ -1,10 +1,13 @@
 ﻿using RimWorld;
+using System.Linq;
 using Verse;
 
 namespace AnomalyRemixGrayPall
 {
     public static class Utility
     {
+        public static bool ScenarioActive => Find.Scenario.AllParts.Any(p => p is ScenPart_GrayPallScenario);
+
         public static bool PlaystyleActive => Find.Storyteller.difficulty.AnomalyPlaystyleDef == AnomalyPlaystyleDefOf.GrayPall;
 
         public static GameComponent_AnomalyRemixGrayPall GameComp => Current.Game.GetComponent<GameComponent_AnomalyRemixGrayPall>();

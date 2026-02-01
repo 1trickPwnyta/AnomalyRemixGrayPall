@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <ScenPartDef>
+    <defName>GrayPallScenario</defName>
+    <label>gray pall scenario</label>
+    <scenPartClass>AnomalyRemixGrayPall.ScenPart_GrayPallScenario</scenPartClass>
+    <category>Fixed</category>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <canBePlayerAddedRemoved>false</canBePlayerAddedRemoved>
+  </ScenPartDef>
+
+</Defs>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>GrayPall</defName>
+    <label>Gray Pall Encumbrance</label>
+    <description>A small team of researchers arrive on a forgotton rimworld with one goal: to collect samples of rock to bring back to the space station for further study. Little do they know, their research expedition will be far less dull than it seems.</description>
+    <scenario>
+      <summary>Three researchers collecting rock samples find themselves seeking the source of the gray pall.</summary>
+      <playerFaction>
+        <factionDef>ResearchExpedition</factionDef>
+      </playerFaction>
+      <parts>
+        
+        <!-- Game start dialog -->
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>You've arrived at your destination. Ready to start building a research base for collecting and storing rock samples, you and your fellow researchers feel a sense of dread as the wind stills and the smell of rotten flesh enters your nostrils. Something sinister is afoot. Be careful out there.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <!-- Config pages -->
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>3</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+
+        <!-- Player starting stuff spawn method-->
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>DropPods</method>
+          <visible>false</visible>
+        </li>
+
+        <!-- Starting research -->
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>MicroelectronicsBasics</project>
+        </li>
+		<li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>DeepDrilling</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>GroundPenetratingScanner</project>
+        </li>
+
+        <!-- Player starting things -->
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>50</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>30</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>45</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>TextBook</thingDef>
+          <count>1</count>
+          <quality>Normal</quality>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_PumpShotgun</thingDef>
+        </li>
+		<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_LMG</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MeleeWeapon_BreachAxe</thingDef>
+          <stuff>Steel</stuff>
+        </li>
+
+        <!-- Scatter some things near player start -->
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>StartingThing_Defined</def>
+          <thingDef>WoodLog</thingDef>
+          <count>250</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>StartingThing_Defined</def>
+          <thingDef>Steel</thingDef>
+          <count>800</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>StartingThing_Defined</def>
+          <thingDef>Plasteel</thingDef>
+          <count>70</count>
+        </li>
+
+        <!-- Scatter some things anywhere -->
+        <li Class="ScenPart_ScatterThingsAnywhere">
+          <def>ScatterThingsAnywhere</def>
+          <thingDef>Steel</thingDef>
+          <count>700</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsAnywhere">
+          <def>ScatterThingsAnywhere</def>
+          <thingDef>ShipChunk</thingDef>
+          <allowRoofed>false</allowRoofed>
+          <count>5</count>
+        </li>
+		
+		<li Class="AnomalyRemixGrayPall.ScenPart_GrayPallScenario">
+		  <def>GrayPallScenario</def>
+		</li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+</Defs>
