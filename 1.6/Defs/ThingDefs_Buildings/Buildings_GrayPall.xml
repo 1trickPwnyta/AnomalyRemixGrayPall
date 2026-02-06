@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  
+  <ThingDef Abstract="true" Name="GrayPallMonolithBase" ParentName="BuildingBase">
+    <passability>Impassable</passability>
+    <fillPercent>1</fillPercent>
+    <blockWind>true</blockWind>
+    <altitudeLayer>Building</altitudeLayer>
+    <tickerType>Rare</tickerType>
+    <pathCost>50</pathCost>
+    <forceDebugSpawnable>true</forceDebugSpawnable>
+    <canOverlapZones>false</canOverlapZones>
+    <selectable>true</selectable>
+    <destroyable>false</destroyable>
+    <useHitPoints>false</useHitPoints>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <uiIconScale>0.75</uiIconScale>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <bringAlongOnGravship>false</bringAlongOnGravship>
+    <statBases>
+      <Flammability>0</Flammability>
+      <MeditationFocusStrength>0.3</MeditationFocusStrength>
+    </statBases>
+	<building>
+      <deconstructible>false</deconstructible>
+      <repairable>false</repairable>
+      <isTargetable>false</isTargetable>
+      <isInert>true</isInert>
+      <claimable>false</claimable>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+	<comps>
+	  <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Void</li>
+        </focusTypes>
+      </li>
+	  <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(255,120,120,0)</glowColor>
+      </li>
+	</comps>
+	<inspectorTabs>
+      <li>ITab_StudyNotesVoidMonolith</li>
+    </inspectorTabs>
+  </ThingDef>
+  
+  <ThingDef ParentName="GrayPallMonolithBase">
+    <defName>GrayPallMonolithA</defName>
+    <label>dark monolith</label>
+    <description>A monolith of unknown age, purpose, and construction. Its smooth surface is etched with lines that twist and writhe in unsettling patterns.</description>
+    <thingClass>AnomalyRemixGrayPall.Building_GrayPallMonolithA</thingClass>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/VoidMonolith/Core/VoidMonolith_A</texPath>
+      <drawSize>(5, 5)</drawSize>
+      <shadowData>
+        <volume>(2.37, 1, 2.37)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(3, 3)</size>
+    <comps>
+      <li Class="CompProperties_StudyUnlocksMonolith">
+        <defaultStudyAmount>2</defaultStudyAmount>
+        <studyNotes>
+          <li>
+            <threshold>10</threshold>
+            <label>Monolith study progress</label>
+            <text>{PAWN_nameDef} has had a breakthrough while studying the monolith. {PAWN_pronoun} believes the monolith is a conduit for psychic energy, connected somehow to the gray pall.\n\n{PAWN_nameDef} is convinced that by studying the monolith further, {PAWN_pronoun} can find a way to stop the gray pall for good.\n\nThe monolith now provides more knowledge when studied.</text>
+          </li>
+          <li>
+            <threshold>25</threshold>
+            <label>Monolith study progress</label>
+            <text>{PAWN_nameDef} made progress studying the monolith. {PAWN_pronoun} has discovered that there is another, more powerful monolith that hides the secret to the source of the gray pall.\n\nThe monolith now provides more knowledge when studied.</text>
+          </li>
+          <li>
+            <threshold>40</threshold>
+            <label>Monolith study complete</label>
+            <text>{PAWN_nameDef} has completed {PAWN_possessive} study of the monolith. {PAWN_pronoun} has pinpointed the location of the more powerful monolith and wants to travel there to unlock its secrets. The next step is to gather your important things and caravan to the destination to build a new research facility and solve this mystery.</text>
+          </li>
+        </studyNotes>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

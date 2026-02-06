@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="AnomalyPlaystyleDefOf.cs" />
     <Compile Include="AnomalyRemixGrayPallSettings.cs" />
+    <Compile Include="Building_GrayPallMonolithA.cs" />
+    <Compile Include="Building_GrayPallMonolithBase.cs" />
     <Compile Include="DevTools.cs" />
     <Compile Include="GameComponent_AnomalyRemixGrayPall.cs" />
     <Compile Include="IncidentWorker_Ambush_Anomaly.cs" />

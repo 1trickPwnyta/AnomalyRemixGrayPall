@@ -19,4 +19,7 @@
 	<AnomalyRemixGrayPall_GrayPallMessages>Show a message when gray palls start and end.</AnomalyRemixGrayPall_GrayPallMessages>
 	<AnomalyRemixGrayPall_GrayPallStarted>A gray pall is descending.</AnomalyRemixGrayPall_GrayPallStarted>
 	<AnomalyRemixGrayPall_GrayPallEnded>The gray pall is clearing.</AnomalyRemixGrayPall_GrayPallEnded>
+	<AnomalyRemixGrayPall_MonolithLetterText>{PAWN_nameDef} has noticed an ancient monolith partly buried nearby.\n\nIf you investigate it, you could learn more.</AnomalyRemixGrayPall_MonolithLetterText>
+	<AnomalyRemixGrayPall_MonolithDespawnLetterLabel>Monolith disappearing</AnomalyRemixGrayPall_MonolithDespawnLetterLabel>
+	<AnomalyRemixGrayPall_MonolithDespawnLetterText>The monolith is disappearing for now. It will be back.</AnomalyRemixGrayPall_MonolithDespawnLetterText>
 </LanguageData>
