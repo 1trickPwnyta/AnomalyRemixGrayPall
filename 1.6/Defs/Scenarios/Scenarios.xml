@@ -4,7 +4,7 @@
 
   <ScenarioDef ParentName="ScenarioBase">
     <defName>GrayPall</defName>
-    <label>Gray Pall Encumbrance</label>
+    <label>Gray Pall Descending</label>
     <description>A small team of researchers arrive on a forgotton rimworld with one goal: to collect samples of rock to bring back to the space station for further study. Little do they know, their research expedition will be far less dull than it seems.</description>
     <scenario>
       <summary>Three researchers collecting rock samples find themselves seeking the source of the gray pall.</summary>

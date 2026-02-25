@@ -58,8 +58,10 @@
     <Compile Include="Building_GrayPallMonolithA.cs" />
     <Compile Include="Building_GrayPallMonolithBase.cs" />
     <Compile Include="DevTools.cs" />
+    <Compile Include="FloatMenuOptionProvider_StudyMonolith.cs" />
     <Compile Include="GameComponent_AnomalyRemixGrayPall.cs" />
     <Compile Include="IncidentWorker_Ambush_Anomaly.cs" />
+    <Compile Include="JobDriver_StudyMonolith.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Patch_CaravansBattlefield.cs" />
     <Compile Include="Patch_Dialog_AnomalySettings.cs" />

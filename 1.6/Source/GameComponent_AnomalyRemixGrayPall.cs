@@ -7,6 +7,8 @@ namespace AnomalyRemixGrayPall
     [StaticConstructorOnStartup]
     public class GameComponent_AnomalyRemixGrayPall : GameComponent
     {
+        private const int REQUIRED_MONOLITH_STUDY = 100;
+
         private static readonly ThingDef monolithDef = ThingDef.Named("GrayPallMonolithA");
         private static readonly LargeBuildingSpawnParms monolithSpawnParmsA = new LargeBuildingSpawnParms
         {
@@ -33,7 +35,9 @@ namespace AnomalyRemixGrayPall
         private Map monolithSpawnMap;
         private IntVec3 monolithSpawnCell;
         private Building_GrayPallMonolithBase monolithSpawn;
+        private int monolithDespawnTick;
         private int monolithDespawnLetterTick;
+        private int monolithStudyProgress;
 
         public GameComponent_AnomalyRemixGrayPall()
         {
@@ -62,7 +66,7 @@ namespace AnomalyRemixGrayPall
                     {
                         EndGrayPall();
                     }
-                    if (!introPhase)
+                    if (!Utility.ScenarioActive || !introPhase)
                     {
                         foreach (IIncidentTarget target in Find.Storyteller.AllIncidentTargets)
                         {
@@ -80,6 +84,10 @@ namespace AnomalyRemixGrayPall
                 if (introPhase && !Utility.GrayPallActive && Find.Maps.Any(m => MapValidForMonolithSpawn(m)))
                 {
                     StartFirstGrayPall();
+                }
+                if (Utility.GrayPallActive && monolithSpawnMap == null && monolithSpawn == null && ticks > monolithDespawnTick + 30000)
+                {
+                    PlanMonolithSpawn();
                 }
                 if (ticks % 60 == 0 && Utility.GrayPallActive && monolithSpawnMap != null && monolithSpawnCell.IsValid)
                 {
@@ -164,13 +172,16 @@ namespace AnomalyRemixGrayPall
                 Scribe_References.Look(ref monolithSpawnMap, "monolithSpawnMap");
                 Scribe_Values.Look(ref monolithSpawnCell, "monolithSpawnCell");
                 Scribe_References.Look(ref monolithSpawn, "monolith");
+                Scribe_Values.Look(ref monolithDespawnTick, "monolithDespawnTick");
                 Scribe_Values.Look(ref monolithDespawnLetterTick, "monolithDespawnLetterTick");
+                Scribe_Values.Look(ref monolithStudyProgress, "monolithStudyProgress");
             }
         }
 
         private void StartFirstGrayPall()
         {
             StartGrayPall(new FloatRange(0.7f, 1.3f), false);
+            PlanMonolithSpawn();
             IncidentDef introIncident = IncidentDef.Named("SightstealerArrival");
             DoIncident(Find.RandomPlayerHomeMap, introIncident, new IntRange(0, 15000).RandomInRange);
         }
@@ -187,11 +198,6 @@ namespace AnomalyRemixGrayPall
                 if (allowMessage && AnomalyRemixGrayPallSettings.grayPallMessages)
                 {
                     Messages.Message("AnomalyRemixGrayPall_GrayPallStarted".Translate(), MessageTypeDefOf.NeutralEvent);
-                }
-
-                if (Utility.ScenarioActive)
-                {
-                    PlanMonolithSpawn();
                 }
             }
         }
@@ -268,12 +274,25 @@ namespace AnomalyRemixGrayPall
             }
         }
 
-        public void DespawnMonolith()
+        public void DespawnMonolith(bool successful = false)
         {
             if (monolithSpawn != null)
             {
                 monolithSpawn.DeSpawn();
-                monolithDespawnLetterTick = Find.TickManager.TicksGame + 60;
+                monolithDespawnTick = Find.TickManager.TicksGame;
+                if (!successful)
+                {
+                    monolithDespawnLetterTick = monolithDespawnTick + 60;
+                }
+                monolithSpawn = null;
+            }
+        }
+
+        public void IncrementMonolithStudyProgress()
+        {
+            if (++monolithStudyProgress >= REQUIRED_MONOLITH_STUDY)
+            {
+                DespawnMonolith(true);
             }
         }
     }

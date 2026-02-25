@@ -1,11 +1,18 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace AnomalyRemixGrayPall
 {
+    [StaticConstructorOnStartup]
     public abstract class Building_GrayPallMonolithBase : Building, IThingGlower
     {
+        private static readonly Texture2D studyIcon = ContentFinder<Texture2D>.Get("UI/Icons/Study");
+        public static readonly JobDef studyMonolithJobDef = DefDatabase<JobDef>.GetNamed("AnomalyRemixGrayPall_StudyMonolith");
+
         public Pawn interactorPawn;
         private int spawnLetterTick;
 
@@ -45,11 +52,37 @@ namespace AnomalyRemixGrayPall
             }
         }
 
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (Gizmo gizmo in base.GetGizmos())
+            {
+                yield return gizmo;
+            }
+            yield return new Command_Action()
+            {
+                defaultLabel = "AnomalyRemixGrayPall_CommandActionStudyMonolith".Translate(interactorPawn.Named("PAWN")),
+                defaultDesc = "AnomalyRemixGrayPall_CommandActionStudyMonolithDesc".Translate(interactorPawn.Named("PAWN")),
+                icon = studyIcon,
+                action = () =>
+                {
+                    StartStudying();
+                    SoundDefOf.Click.PlayOneShot(null);
+                },
+                Disabled = interactorPawn?.Map != Map
+            };
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_References.Look(ref interactorPawn, "interactorPawn");
             Scribe_Values.Look(ref spawnLetterTick, "spawnLetterTick");
+        }
+
+        public void StartStudying()
+        {
+            Job job = JobMaker.MakeJob(studyMonolithJobDef, this);
+            interactorPawn.jobs.StartJob(job, JobCondition.InterruptForced);
         }
     }
 }
