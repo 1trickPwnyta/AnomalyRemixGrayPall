@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  
+  <QuestScriptDef>
+    <defName>EndGame_GrayPall</defName>
+    <isRootSpecial>true</isRootSpecial>
+    <autoAccept>true</autoAccept>
+    <defaultChallengeRating>4</defaultChallengeRating>
+    <questNameRules>
+      <rulesStrings>
+        <li>questName->Gray Pall</li>
+      </rulesStrings>
+    </questNameRules>
+    <questDescriptionRules>
+      <rulesStrings>
+        <li>questDescription->In the midst of a gray pall, a mysterious monolith sometimes appears before a chosen explorer. Investigate it to learn more about the gray pall.</li>
+      </rulesStrings>
+    </questDescriptionRules>
+    <root Class="AnomalyRemixGrayPall.QuestNode_Root_GrayPall" />
+  </QuestScriptDef>
+
+</Defs>

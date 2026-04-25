@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
@@ -7,20 +9,34 @@ namespace AnomalyRemixGrayPall
     [StaticConstructorOnStartup]
     public class GameComponent_AnomalyRemixGrayPall : GameComponent
     {
-        private const int REQUIRED_MONOLITH_STUDY = 100;
+        private static readonly ThingDef monolithDefA = ThingDef.Named("GrayPallMonolithA");
+        private static readonly ThingDef monolithDefB = ThingDef.Named("GrayPallMonolithB");
+        private static readonly LargeBuildingSpawnParms monolithSpawnParmsA;
+        private static readonly LargeBuildingSpawnParms monolithSpawnParmsB;
+        private static readonly WorldObjectDef monolithBWorldObjectDef = DefDatabase<WorldObjectDef>.GetNamed("GrayPallMonolithB");
+        private static readonly WorldObjectDef grayPallSourceWorldObjectDef = DefDatabase<WorldObjectDef>.GetNamed("GrayPallSource");
 
-        private static readonly ThingDef monolithDef = ThingDef.Named("GrayPallMonolithA");
-        private static readonly LargeBuildingSpawnParms monolithSpawnParmsA = new LargeBuildingSpawnParms
+        static GameComponent_AnomalyRemixGrayPall()
         {
-            thingDef = monolithDef,
-            minDistanceToColonyBuilding = 30f,
-            maxDistanceToColonyBuilding = 50f,
-            attemptSpawnLocationType = SpawnLocationType.Outdoors,
-            attemptNotUnderBuildings = true,
-            canSpawnOnImpassable = false,
-            allowFogged = false,
-            ignoreTerrainAffordance = true
-        };
+            LargeBuildingSpawnParms parms = new LargeBuildingSpawnParms
+            {
+                attemptSpawnLocationType = SpawnLocationType.Outdoors,
+                attemptNotUnderBuildings = true,
+                canSpawnOnImpassable = false,
+                allowFogged = false,
+                ignoreTerrainAffordance = true
+            };
+
+            monolithSpawnParmsA = parms;
+            monolithSpawnParmsA.thingDef = monolithDefA;
+            monolithSpawnParmsA.minDistanceToColonyBuilding = 30f;
+            monolithSpawnParmsA.maxDistanceToColonyBuilding = 50f;
+
+            monolithSpawnParmsB = parms;
+            monolithSpawnParmsB.thingDef = monolithDefB;
+            monolithSpawnParmsB.minDistanceToColonyBuilding = 45f;
+            monolithSpawnParmsB.maxDistanceToColonyBuilding = 75f;
+        }
 
         public float anomalyThreatsInactiveFraction = 0f;
         public float anomalyThreatsActiveFraction = 1f;
@@ -57,12 +73,12 @@ namespace AnomalyRemixGrayPall
                 {
                     if (ticks - grayPallMaxTimeBetween * 60000 > lastGrayPallEndTick || (ticks - grayPallMinTimeBetween * 60000 > lastGrayPallEndTick && Rand.MTBEventOccurs(grayPallMtbDays, 60000f, 1f)))
                     {
-                        StartGrayPall();
+                        StartGrayPall(Utility.MonolithBMap != null ? new FloatRange?(new FloatRange(2f, 4f)) : null);
                     }
                 }
                 if (Utility.GrayPallActive)
                 {
-                    if (ticks >= nextGrayPallEndTick)
+                    if (ticks >= nextGrayPallEndTick && Utility.GrayPallSourceMap == null)
                     {
                         EndGrayPall();
                     }
@@ -72,6 +88,7 @@ namespace AnomalyRemixGrayPall
                         {
                             if (Rand.MTBEventOccurs(grayPallExtraThreatMtbHours, 2500f, 1f))
                             {
+                                Log.Debug("DO INCIDENT");
                                 DoIncident(target);
                             }
                         }
@@ -85,7 +102,7 @@ namespace AnomalyRemixGrayPall
                 {
                     StartFirstGrayPall();
                 }
-                if (Utility.GrayPallActive && monolithSpawnMap == null && monolithSpawn == null && ticks > monolithDespawnTick + 30000)
+                if (CanSpawnMonolith())
                 {
                     PlanMonolithSpawn();
                 }
@@ -112,7 +129,7 @@ namespace AnomalyRemixGrayPall
                 if (monolithDespawnLetterTick > 0 && ticks >= monolithDespawnLetterTick)
                 {
                     monolithDespawnLetterTick = 0;
-                    Find.LetterStack.ReceiveLetter("AnomalyRemixGrayPall_MonolithDespawnLetterLabel".Translate(), "AnomalyRemixGrayPall_MonolithDespawnLetterText".Translate(), LetterDefOf.NeutralEvent);
+                    Find.LetterStack.ReceiveLetter("AnomalyRemixGrayPall_MonolithDespawnLetterLabel".Translate(), "AnomalyRemixGrayPall_MonolithDespawnLetterText".Translate(), LetterDefOf.NeutralEvent, null, quest: Utility.ScenarioQuest);
                 }
             }
         }
@@ -216,13 +233,39 @@ namespace AnomalyRemixGrayPall
             introPhase = false;
         }
 
+        private bool CanSpawnMonolith()
+        {
+            if (!Utility.GrayPallActive)
+            {
+                return false;
+            }
+            if (monolithSpawnMap != null || monolithSpawn != null)
+            {
+                return false;
+            }
+            if (Find.TickManager.TicksGame < monolithDespawnTick + 30000)
+            {
+                return false;
+            }
+            if (Utility.MonolithBWorldObject != null && Utility.MonolithBMap == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private bool MapValidForMonolithSpawn(Map map) => map.IsPlayerHome && !map.IsPocketMap && map.mapPawns.ColonistsSpawnedCount > 0;
 
         private void PlanMonolithSpawn()
         {
-            if (Find.Maps.TryRandomElement(m => MapValidForMonolithSpawn(m), out Map map))
+            Map map = Utility.MonolithBMap;
+            if (map == null || !MapValidForMonolithSpawn(map))
             {
-                LargeBuildingSpawnParms parms = monolithSpawnParmsA;
+                Find.Maps.TryRandomElement(m => MapValidForMonolithSpawn(m), out map);
+            }
+            if (map != null)
+            {
+                LargeBuildingSpawnParms parms = MonolithSpawnParmsForMap(map);
                 if (!LargeBuildingCellFinder.TryFindCell(out IntVec3 cell, map, parms))
                 {
                     parms.minDistanceToColonyBuilding = 0f;
@@ -233,22 +276,15 @@ namespace AnomalyRemixGrayPall
                 {
                     monolithSpawnMap = map;
                     monolithSpawnCell = cell;
-                    Log.Debug(cell);
+                    Log.Debug(cell); // TODO Remove this
                 }
-                else
-                {
-                    Log.Debug("Failed to plan a monolith spawn location.");
-                }
-            }
-            else
-            {
-                Log.Debug("No map to spawn monolith.");
             }
         }
 
         private void SpawnMonolith(Pawn pawn)
         {
             Thing thing = null;
+            ThingDef monolithDef = MonolithDefForMap(monolithSpawnMap);
             if (GenSpawn.CanSpawnAt(monolithDef, monolithSpawnCell, monolithSpawnMap, Rot4.North))
             {
                 if (GenSpawn.TrySpawn(monolithDef, monolithSpawnCell, monolithSpawnMap, Rot4.North, out thing, WipeMode.VanishOrMoveAside))
@@ -259,14 +295,6 @@ namespace AnomalyRemixGrayPall
                     monolithSpawnMap = null;
                     monolithSpawnCell = IntVec3.Invalid;
                 }
-                else
-                {
-                    Log.Debug("Failed to spawn monolith. Replanning.");
-                }
-            }
-            else
-            {
-                Log.Debug("Can't spawn monolith at planned cell. Replanning.");
             }
             if (thing == null)
             {
@@ -290,10 +318,52 @@ namespace AnomalyRemixGrayPall
 
         public void IncrementMonolithStudyProgress()
         {
-            if (++monolithStudyProgress >= REQUIRED_MONOLITH_STUDY)
+            monolithStudyProgress++;
+            Comp_MonolithStudyProgress comp = monolithSpawn.GetComp<Comp_MonolithStudyProgress>();
+            comp.Notify_StudyLevel(monolithStudyProgress);
+            if (monolithStudyProgress >= comp.Props.studyRequired)
             {
+                if (Utility.MonolithBMap != null)
+                {
+                    // TODO maxDist should be int.MaxValue
+                    DiscoverWorldObject(grayPallSourceWorldObjectDef, 10, TileFinderMode.Near, "AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Label".Translate(), "AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Text".Translate(monolithSpawn.interactorPawn.Named("PAWN"), monolithSpawn.Named("MONOLITH")), monolithBWorldObjectDef);
+                }
+                else
+                {
+                    // TODO maxDist should be int.MaxValue
+                    DiscoverWorldObject(monolithBWorldObjectDef, 10, TileFinderMode.Furthest, "AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Label".Translate(), "AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Text".Translate(monolithSpawn.interactorPawn.Named("PAWN"), monolithSpawn.Named("MONOLITH")));
+                }
                 DespawnMonolith(true);
+                ResetMonolithStudyProgress();
             }
         }
+
+        public void ResetMonolithStudyProgress()
+        {
+            monolithStudyProgress = 0;
+        }
+
+        private void DiscoverWorldObject(WorldObjectDef def, int maxDist, TileFinderMode mode, string letterLabel, string letterText, WorldObjectDef defToRemoveFromQuest = null)
+        {
+            WorldObject worldObject = WorldObjectMaker.MakeWorldObject(def);
+            TileFinder.TryFindNewSiteTile(out PlanetTile tile, maxDist: maxDist, tileFinderMode: mode);
+            if (tile != null)
+            {
+                worldObject.Tile = tile;
+                Find.World.worldObjects.Add(worldObject);
+                List<GlobalTargetInfo> targets = Utility.ScenarioQuest.GetFirstPartOfType<QuestPart_LookTargets>().targets;
+                targets.Add(worldObject);
+                targets.RemoveWhere(t => t.HasWorldObject && t.WorldObject.def == defToRemoveFromQuest);
+                Find.LetterStack.ReceiveLetter(letterLabel, letterText, LetterDefOf.PositiveEvent, worldObject, quest: Utility.ScenarioQuest);
+            }
+            else
+            {
+                Log.Debug("Failed to find planet tile for " + def + ".");
+            }
+        }
+
+        private ThingDef MonolithDefForMap(Map map) => map == Utility.MonolithBMap ? monolithDefB : monolithDefA;
+
+        private LargeBuildingSpawnParms MonolithSpawnParmsForMap(Map map) => map == Utility.MonolithBMap ? monolithSpawnParmsB : monolithSpawnParmsA;
     }
 }

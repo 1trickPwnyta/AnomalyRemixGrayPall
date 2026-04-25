@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.QuestGen;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -35,6 +36,7 @@ namespace AnomalyRemixGrayPall
             TargetInfo info = new TargetInfo(Position, Map);
             EffecterDefOf.ImpactDustCloud.Spawn().Trigger(info, info);
             SoundDef.Named("VoidMonolith_Gleaming").PlayOneShot(this);
+            Utility.ScenarioQuest.GetFirstPartOfType<QuestPart_LookTargets>().targets.Remove(this);
             base.DeSpawn(mode);
         }
 
@@ -43,7 +45,13 @@ namespace AnomalyRemixGrayPall
             base.TickRare();
             if (spawnLetterTick > 0 && Find.TickManager.TicksGame > spawnLetterTick)
             {
-                Find.LetterStack.ReceiveLetter(LabelCap, "AnomalyRemixGrayPall_MonolithLetterText".Translate(interactorPawn.Named("PAWN")), LetterDefOf.NeutralEvent);
+                if (Utility.ScenarioQuest == null)
+                {
+                    Slate slate = new Slate();
+                    QuestUtility.GenerateQuestAndMakeAvailable(Utility.grayPallQuestScriptDef, slate);
+                }
+                Utility.ScenarioQuest.GetFirstPartOfType<QuestPart_LookTargets>().targets.Add(this);
+                Find.LetterStack.ReceiveLetter(LabelCap, "AnomalyRemixGrayPall_MonolithLetterText".Translate(interactorPawn.Named("PAWN")), LetterDefOf.NeutralEvent, this, quest: Utility.ScenarioQuest);
                 spawnLetterTick = 0;
             }
             if (!Utility.GrayPallActive || interactorPawn == null || !interactorPawn.Spawned || interactorPawn.Map != Map || !interactorPawn.Awake() || interactorPawn.Position.DistanceToSquared(Position) > 100)

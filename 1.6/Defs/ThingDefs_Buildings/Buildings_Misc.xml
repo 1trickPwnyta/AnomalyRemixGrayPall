@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  
+  <ThingDef ParentName="BuildingBase">
+    <defName>OminousOpening</defName>
+    <label>ominous opening</label>
+    <description>The gray pall appears to be directly spewing from this huge opening in the ground. It is possible to climb down into the caverns below.</description>
+    <size>(8,8)</size>
+    <useHitPoints>false</useHitPoints>
+    <thingClass>AnomalyRemixGrayPall.OminousOpening</thingClass>
+    <tickerType>Normal</tickerType>
+    <rotatable>false</rotatable>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <canOverlapZones>false</canOverlapZones>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/PitGate/PitGate</texPath>
+      <drawSize>(8,8)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Impassable</passability>
+    <destroyable>false</destroyable>
+    <building>
+      <isEdifice>true</isEdifice>
+      <deconstructible>false</deconstructible>
+      <isTargetable>false</isTargetable>
+      <isInert>true</isInert>
+      <claimable>false</claimable>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+    <portal>
+      <pocketMapGenerator>Undercave</pocketMapGenerator>
+      <exitDef>CaveExit</exitDef>
+      <traverseSound>TraversePitGate</traverseSound>
+    </portal>
+    <statBases>
+      <Flammability>0</Flammability>
+    </statBases>
+    <inspectorTabs>
+      <li>ITab_ContentsMapPortal</li>
+    </inspectorTabs>
+	<comps>
+	  <li Class="CompProperties_FleckEmitterLongTerm">
+        <fleckDef>PitGateCollapseDustThick</fleckDef>
+        <spawnRadius>3</spawnRadius>
+        <spawnChance>0.5</spawnChance>
+        <spawnOffsetFromCenter>(0.5,0.0,0.5)</spawnOffsetFromCenter>
+        <prewarmCycles>1.0</prewarmCycles>
+        <fleckScale>4.0</fleckScale>
+        <minRotationRate>-10.0</minRotationRate>
+        <maxRotationRate>10.0</maxRotationRate>
+        <minVelocityAngle>-20.0</minVelocityAngle>
+        <maxVelocityAngle>20.0</maxVelocityAngle>
+        <minVelocitySpeed>0.5</minVelocitySpeed>
+        <maxVelocitySpeed>1.5</maxVelocitySpeed>
+        <forceEnabled>true</forceEnabled>
+      </li>
+	  <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(255,120,120,0)</glowColor>
+      </li>
+	</comps>
+  </ThingDef>
+
+</Defs>

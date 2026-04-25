@@ -56,13 +56,20 @@
     <Compile Include="AnomalyPlaystyleDefOf.cs" />
     <Compile Include="AnomalyRemixGrayPallSettings.cs" />
     <Compile Include="Building_GrayPallMonolithA.cs" />
+    <Compile Include="Building_GrayPallMonolithB.cs" />
     <Compile Include="Building_GrayPallMonolithBase.cs" />
+    <Compile Include="CaravanArrivalAction_VisitGrayPallQuestSite.cs" />
+    <Compile Include="CompProperties_MonolithStudyProgress.cs" />
+    <Compile Include="Comp_MonolithStudyProgress.cs" />
     <Compile Include="DevTools.cs" />
     <Compile Include="FloatMenuOptionProvider_StudyMonolith.cs" />
     <Compile Include="GameComponent_AnomalyRemixGrayPall.cs" />
+    <Compile Include="GenStep_GrayPallSource.cs" />
+    <Compile Include="GrayPallQuestSite.cs" />
     <Compile Include="IncidentWorker_Ambush_Anomaly.cs" />
     <Compile Include="JobDriver_StudyMonolith.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="OminousOpening.cs" />
     <Compile Include="Patch_CaravansBattlefield.cs" />
     <Compile Include="Patch_Dialog_AnomalySettings.cs" />
     <Compile Include="Patch_FormCaravanComp.cs" />
@@ -74,8 +81,14 @@
     <Compile Include="Patch_WeatherDecider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnomalyRemixGrayPallMod.cs" />
+    <Compile Include="QuestNode_Root_GrayPall.cs" />
     <Compile Include="ScenPart_GrayPallScenario.cs" />
+    <Compile Include="SymbolResolver_Ominous_Opening.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="WorldObjectCompProperties_GrayPallQuestSite.cs" />
+    <Compile Include="WorldObjectComp_GrayPallQuestSite.cs" />
+    <Compile Include="WorldObject_GrayPallSource.cs" />
+    <Compile Include="WorldObject_MonolithB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

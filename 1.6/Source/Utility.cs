@@ -1,18 +1,31 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System.Linq;
 using Verse;
 
 namespace AnomalyRemixGrayPall
 {
+    [StaticConstructorOnStartup]
     public static class Utility
     {
-        public static bool ScenarioActive => Find.Scenario.AllParts.Any(p => p is ScenPart_GrayPallScenario);
+        public static readonly QuestScriptDef grayPallQuestScriptDef = DefDatabase<QuestScriptDef>.GetNamed("EndGame_GrayPall");
+        public static readonly ThingDef ominousOpeningDef = ThingDef.Named("OminousOpening");
+
+        public static bool ScenarioActive => Find.Scenario?.AllParts.Any(p => p is ScenPart_GrayPallScenario) ?? false;
+
+        public static Quest ScenarioQuest => Find.QuestManager.QuestsListForReading.FirstOrDefault(q => q.root == grayPallQuestScriptDef);
 
         public static bool PlaystyleActive => Find.Storyteller.difficulty.AnomalyPlaystyleDef == AnomalyPlaystyleDefOf.GrayPall;
 
-        public static GameComponent_AnomalyRemixGrayPall GameComp => Current.Game.GetComponent<GameComponent_AnomalyRemixGrayPall>();
+        public static GameComponent_AnomalyRemixGrayPall GameComp => Current.Game?.GetComponent<GameComponent_AnomalyRemixGrayPall>();
 
         public static bool GrayPallActive => Find.World.GameConditionManager.ConditionIsActive(GameConditionDefOf.GrayPall);
+
+        public static WorldObject MonolithBWorldObject => Find.World.worldObjects.AllWorldObjects.FirstOrDefault(o => o is WorldObject_MonolithB);
+
+        public static Map MonolithBMap => Find.Maps.FirstOrDefault(m => m.Parent is WorldObject_MonolithB);
+
+        public static Map GrayPallSourceMap => Find.Maps.FirstOrDefault(m => m.Parent is WorldObject_GrayPallSource);
 
         public static string GetGrayPallMtbDaysLabel(this float mtbDays)
         {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  
+  <MapGeneratorDef ParentName="MapCommonBase">
+    <defName>GrayPallSource</defName>
+    <genSteps>
+      <li>RocksFromGrid</li>
+      <li>GrayPallSource</li>
+    </genSteps>
+  </MapGeneratorDef>
+  
+  <GenStepDef>
+    <defName>GrayPallSource</defName>
+    <order>400</order>
+    <genStep Class="AnomalyRemixGrayPall.GenStep_GrayPallSource">
+      <count>1</count>
+      <nearMapCenter>true</nearMapCenter>
+    </genStep>
+  </GenStepDef>
+
+</Defs>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  
+  <RuleDef>
+    <defName>Ominous_Opening</defName>
+    <symbol>ominous_opening</symbol>
+    <resolvers>
+      <li Class="AnomalyRemixGrayPall.SymbolResolver_Ominous_Opening" />
+    </resolvers>
+  </RuleDef>
+
+</Defs>

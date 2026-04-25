@@ -26,4 +26,14 @@
 	<AnomalyRemixGrayPall_CommandActionStudyMonolithDesc>Send {PAWN_nameDef} to study the monolith. Only {PAWN_pronoun} can see it.</AnomalyRemixGrayPall_CommandActionStudyMonolithDesc>
 	<AnomalyRemixGrayPall_CantStudyMonolithWrongPawn>Only {PAWN_nameDef} can see and interact with the monolith.</AnomalyRemixGrayPall_CantStudyMonolithWrongPawn>
 	<AnomalyRemixGrayPall_FloatMenuOptionStudyMonolith>Study {0}</AnomalyRemixGrayPall_FloatMenuOptionStudyMonolith>
+	<AnomalyRemixGrayPall_InvestigateLocation>Investigate {0}</AnomalyRemixGrayPall_InvestigateLocation>
+	<AnomalyRemixGrayPall_InvestigatingLocation>Investigating {0}.</AnomalyRemixGrayPall_InvestigatingLocation>
+	<AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Label>Monolith study complete</AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Label>
+	<AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Text>{PAWN_nameDef} has finished {PAWN_possessive} study of the {MONOLITH_label}. {PAWN_pronoun} believes that {PAWN_pronoun} has pinpointed the location of an unknown sinister aura and wants to travel there to unlock its secrets. The next step is to gather your important things and caravan to the destination to build a new research facility and solve this mystery.</AnomalyRemixGrayPall_MonolithBDiscoveryLetter_Text>
+	<AnomalyRemixGrayPall_MonolithBArrivalLetter_Label>Sinister location</AnomalyRemixGrayPall_MonolithBArrivalLetter_Label>
+	<AnomalyRemixGrayPall_MonolithBArrivalLetter_Text>{0} has arrived at the location hinted at by the monolith. Something about this place feels off. The gray pall thickens.</AnomalyRemixGrayPall_MonolithBArrivalLetter_Text>
+	<AnomalyRemixGrayPall_GrayPallSourceArrivalLetter_Label>Gray pall source</AnomalyRemixGrayPall_GrayPallSourceArrivalLetter_Label>
+	<AnomalyRemixGrayPall_GrayPallSourceArrivalLetter_Text>{0} has arrived at the source of the gray pall. The gray pall is permanent here and appears to be emanating from a large hole in the ground. If you go down there, be sure to go prepared.</AnomalyRemixGrayPall_GrayPallSourceArrivalLetter_Text>
+	<AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Label>Gray pall source found</AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Label>
+	<AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Text>{PAWN_nameDef} has finished {PAWN_possessive} study of the {MONOLITH_label} and discovered the exact location of the source of the gray pall. Go there to finally stop the gray pall from corrupting this world.\n\nBe prepared for anything.</AnomalyRemixGrayPall_GrayPallSourceDiscoveryLetter_Text>
 </LanguageData>
